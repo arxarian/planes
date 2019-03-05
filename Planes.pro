@@ -24,6 +24,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++11
 
+OTHER_FILES += \
+    README.txt
+
 SOURCES += \
     main.cpp \
     bullet.cpp \
