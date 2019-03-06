@@ -30,11 +30,13 @@ OTHER_FILES += \
 SOURCES += \
     main.cpp \
     bullet.cpp \
-    myplane.cpp
+    myplane.cpp \
+    enemy.cpp
 
 HEADERS += \
     bullet.h \
-    myplane.h
+    myplane.h \
+    enemy.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

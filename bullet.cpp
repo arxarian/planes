@@ -1,4 +1,5 @@
 #include "bullet.h"
+#include "enemy.h"
 #include <QTimer>
 #include <QGraphicsScene>
 
@@ -14,11 +15,32 @@ Bullet::Bullet()
 
 void Bullet::move()
 {
+    const QList<QGraphicsItem *> arrCollidingItems = collidingItems();
+
+    for (const auto item : arrCollidingItems)
+    {
+        if (item->type() == Enemy::Type)
+        {
+            scene()->removeItem(item);
+            delete item;
+
+            removeBullet();
+
+            return;
+        }
+    }
+
     setY(y() - 10);
 
     if (y() < - rect().height())
     {
-        scene()->removeItem(this);
-        this->deleteLater();
+        removeBullet();
     }
+}
+
+void Bullet::removeBullet()
+{
+    qDebug("bullet deleted");
+    scene()->removeItem(this);
+    this->deleteLater();
 }

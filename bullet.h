@@ -12,6 +12,9 @@ public:
 
 public slots:
     void move();
+
+private:
+    void removeBullet();
 };
 
 #endif // BULLET_H
