@@ -11,9 +11,6 @@ class MyPlane : public QObject, public QGraphicsRectItem
 public:
     MyPlane();
 
-public slots:
-    void spawnEnemy();
-
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 };

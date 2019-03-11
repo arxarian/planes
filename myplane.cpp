@@ -1,6 +1,5 @@
 #include <QKeyEvent>
 #include <QGraphicsScene>
-#include <QTimer>
 #include <QDebug>
 
 #include "myplane.h"
@@ -9,17 +8,7 @@
 
 MyPlane::MyPlane()
 {
-    QTimer *timer = new QTimer(this);
-    timer->setInterval(2000);
-    connect(timer, &QTimer::timeout, this, &MyPlane::spawnEnemy);
-    timer->start();
-}
-
-void MyPlane::spawnEnemy()
-{
-    qDebug() << "enemy here";
-    Enemy *enemy = new Enemy();
-    scene()->addItem(enemy);
+    //
 }
 
 void MyPlane::keyPressEvent(QKeyEvent *event)
