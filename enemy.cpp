@@ -2,12 +2,13 @@
 #include <QTimer>
 #include <QGraphicsScene>
 
+#include "game.h"
+
 Enemy::Enemy(QObject *parent) : QObject(parent)
 {
     setRect(0, 0, 100, 100);
 
-    // TODO - get scene with. This is not working, because item is added to scene after creation => segfault
-    int randomPosition = rand() % (static_cast<int>(/*scene()->width()*/800 - rect().width()));
+    const qint32 randomPosition = rand() % (static_cast<int>(Game::resolution().width() - rect().width()));
     setPos(randomPosition, 0);
 
     QTimer *timer = new QTimer(this);
@@ -27,7 +28,6 @@ void Enemy::move()
 
     if (y() > scene()->height())
     {
-        qDebug("enemy deleted");
         scene()->removeItem(this);
         this->deleteLater();
     }

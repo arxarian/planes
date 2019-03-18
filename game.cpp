@@ -23,6 +23,7 @@ Game::Game(QWidget *parent) : QGraphicsView(parent)
 
     scene->addItem(myPlane);
 
+    // place the plane in the bottom middle
     myPlane->setPos((scene->width() - myPlane->rect().width()) / 2,
                     scene->height() - myPlane->rect().height());
 }
