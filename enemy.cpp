@@ -4,10 +4,9 @@
 
 #include "game.h"
 
-Enemy::Enemy(QObject *parent) : QObject(parent)
+Enemy::Enemy(QObject *parent)
+    : QObject(parent), QGraphicsRectItem (0, -101, 100, 100)
 {
-    setRect(0, 0, 100, 100);
-
     const qint32 randomPosition = rand() % (static_cast<int>(Game::resolution().width() - rect().width()));
     setPos(randomPosition, 0);
 
