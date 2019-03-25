@@ -32,9 +32,14 @@ void Game::Run()
 {
     show();
 
+    // casovac, ktery kazdych 50 ms vola metodu spawnEnemy
+    // vytvoreni casovace
     QTimer *timer = new QTimer(this);
+    // nastaveni intervalu na 2000 ms
     timer->setInterval(2000);
+    // propojeni signalu casovace a metody spawnEnemy
     connect(timer, &QTimer::timeout, this, &Game::spawnEnemy);
+    // spusteni casovace
     timer->start();
 }
 
@@ -45,6 +50,8 @@ QSize Game::resolution()
 
 void Game::spawnEnemy()
 {
+    // vytvoreni objektu nepritel
     Enemy *enemy = new Enemy();
+    // pridani nepritele na scenu
     scene()->addItem(enemy);
 }

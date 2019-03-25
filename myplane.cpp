@@ -27,10 +27,10 @@ void MyPlane::keyPressEvent(QKeyEvent *event)
             setX(x() + 10);
         }
     }
-    else if (event->key() == Qt::Key_Space)
-    {
-        Bullet *bullet = new Bullet();
-        bullet->setPos(x(), y());
-        scene()->addItem(bullet);
-    }
+
+    // TODO - tento kod vytvori strelu, vytvor strelu pouze pokud je stisknut mezernik
+
+//    Bullet *bullet = new Bullet();
+//    bullet->setPos(x(), y());
+//    scene()->addItem(bullet);
 }
