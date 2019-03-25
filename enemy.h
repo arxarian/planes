@@ -7,6 +7,8 @@
 class Enemy : public QObject, public QGraphicsRectItem
 {
     Q_OBJECT
+    Q_PROPERTY(qreal animatedY READ animatedY WRITE setAnimatedY NOTIFY animatedYChanged)
+
 public:
     enum
     {
@@ -16,8 +18,17 @@ public:
     explicit Enemy(QObject *parent = nullptr);
     int type() const override;
 
+    qreal animatedY() const;
+
 public slots:
-    void move();
+    void startMoving();
+    void setAnimatedY(qreal animatedY);
+
+private:
+    qreal m_animatedY;
+
+signals:
+    void animatedYChanged();
 };
 
 #endif // ENEMY_H

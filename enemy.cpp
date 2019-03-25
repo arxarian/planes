@@ -1,6 +1,6 @@
 #include "enemy.h"
-#include <QTimer>
 #include <QGraphicsScene>
+#include <QPropertyAnimation>
 
 #include "game.h"
 
@@ -11,10 +11,7 @@ Enemy::Enemy(QObject *parent) : QObject(parent)
     const qint32 randomPosition = rand() % (static_cast<int>(Game::resolution().width() - rect().width()));
     setPos(randomPosition, 0);
 
-    QTimer *timer = new QTimer(this);
-    timer->setInterval(50);
-    connect(timer, &QTimer::timeout, this, &Enemy::move);
-    timer->start();
+    startMoving();
 }
 
 int Enemy::type() const
@@ -22,13 +19,31 @@ int Enemy::type() const
     return Type;
 }
 
-void Enemy::move()
+qreal Enemy::animatedY() const
 {
-    setY(y() + 5);
+    return m_animatedY;
+}
 
-    if (y() > scene()->height())
-    {
+void Enemy::startMoving()
+{
+    QPropertyAnimation *pMoveAnimation = new QPropertyAnimation(this, "animatedY");
+    pMoveAnimation->setDuration(10000);
+    pMoveAnimation->setStartValue(rect().y());
+    pMoveAnimation->setEndValue(Game::resolution().height() + rect().height());
+
+    pMoveAnimation->start();
+
+    connect(pMoveAnimation, &QPropertyAnimation::valueChanged, this, [this]{
+        this->setY(this->animatedY());
+    });
+
+    connect(pMoveAnimation, &QPropertyAnimation::finished, this, [this]{
         scene()->removeItem(this);
         this->deleteLater();
-    }
+    });
+}
+
+void Enemy::setAnimatedY(qreal y)
+{
+    m_animatedY = y;
 }
