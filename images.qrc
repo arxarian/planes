@@ -2,5 +2,6 @@
     <qresource prefix="/images">
         <file>spaceship.png</file>
         <file>greenlaser.png</file>
+        <file>meteorit.png</file>
     </qresource>
 </RCC>

@@ -2,9 +2,9 @@
 #define ENEMY_H
 
 #include <QObject>
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 
-class Enemy : public QObject, public QGraphicsRectItem
+class Enemy : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
     Q_PROPERTY(qreal animatedY READ animatedY WRITE setAnimatedY NOTIFY animatedYChanged)

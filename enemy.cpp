@@ -1,13 +1,17 @@
 #include "enemy.h"
 #include <QGraphicsScene>
 #include <QPropertyAnimation>
+#include <QRandomGenerator>
 
 #include "game.h"
 
 Enemy::Enemy(QObject *parent)
-    : QObject(parent), QGraphicsRectItem (0, -101, 100, 100)
+    : QObject(parent), QGraphicsPixmapItem()
 {
-    const qint32 randomPosition = rand() % (static_cast<int>(Game::resolution().width() - rect().width()));
+    setPixmap(QPixmap(":/images/meteorit.png"));
+    setScale(qBound(0.3, QRandomGenerator::global()->generateDouble(), 1.0));
+
+    const qint32 randomPosition = rand() % (static_cast<int>(Game::resolution().width() - boundingRect().width()));
     setPos(randomPosition, 0);
 }
 
@@ -26,7 +30,7 @@ void Enemy::startMoving()
     QPropertyAnimation *pMoveAnimation = new QPropertyAnimation(this, "animatedY");
     pMoveAnimation->setDuration(10000);
     pMoveAnimation->setStartValue(scenePos().y());
-    pMoveAnimation->setEndValue(Game::resolution().height() + rect().height());
+    pMoveAnimation->setEndValue(Game::resolution().height() + boundingRect().height());
 
     pMoveAnimation->start();
 
