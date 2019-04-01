@@ -2,9 +2,9 @@
 #define MYRECT_H
 
 #include <QObject>
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 
-class MyPlane : public QObject, public QGraphicsRectItem
+class MyPlane : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 

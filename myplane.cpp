@@ -7,8 +7,9 @@
 #include "enemy.h"
 
 MyPlane::MyPlane()
+    : QObject(), QGraphicsPixmapItem()
 {
-    //
+    setPixmap(QPixmap(":/images/spaceship.png"));
 }
 
 void MyPlane::keyPressEvent(QKeyEvent *event)
@@ -22,7 +23,7 @@ void MyPlane::keyPressEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Right)
     {
-        if (x() < scene()->width() - rect().width())
+        if (x() < scene()->width() - boundingRect().width())
         {
             setX(x() + 10);
         }
@@ -35,5 +36,5 @@ void MyPlane::keyPressEvent(QKeyEvent *event)
         bullet->startMoving();
     }
 
-    QGraphicsRectItem::keyPressEvent(event);
+    QGraphicsPixmapItem::keyPressEvent(event);
 }

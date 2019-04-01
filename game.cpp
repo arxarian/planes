@@ -17,15 +17,14 @@ Game::Game(QWidget *parent) : QGraphicsView(parent)
 
     // reprezentuje obdelnik, ktery je mozne pridat do sceny
     MyPlane *myPlane = new MyPlane();
-    myPlane->setRect(0, 0, 100, 100);
     myPlane->setFlag(QGraphicsItem::ItemIsFocusable);
     myPlane->setFocus();
 
     scene->addItem(myPlane);
 
     // place the plane in the bottom middle
-    myPlane->setPos((scene->width() - myPlane->rect().width()) / 2,
-                    scene->height() - myPlane->rect().height());
+    myPlane->setPos((scene->width() - myPlane->boundingRect().width()) / 2,
+                    scene->height() - myPlane->boundingRect().height());
 }
 
 void Game::Run()
