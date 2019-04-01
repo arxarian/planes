@@ -32,6 +32,7 @@ void MyPlane::keyPressEvent(QKeyEvent *event)
         Bullet *bullet = new Bullet();
         bullet->setPos(x(), y());
         scene()->addItem(bullet);
+        bullet->startMoving();
     }
 
     QGraphicsRectItem::keyPressEvent(event);
