@@ -73,7 +73,6 @@ void Bullet::detectCollisions()
 
 void Bullet::removeBullet()
 {
-    qDebug("bullet deleted");
     scene()->removeItem(this);
     this->deleteLater();
 }
