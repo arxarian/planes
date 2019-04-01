@@ -14,6 +14,7 @@ Game::Game(QWidget *parent) : QGraphicsView(parent)
     QGraphicsScene *scene = new QGraphicsScene(this);
     scene->setSceneRect(0, 0, resolution().width(), resolution().height());
     setScene(scene);
+    scene->setBackgroundBrush(QBrush(QPixmap(":/images/space.jpg")));
 
     // reprezentuje obdelnik, ktery je mozne pridat do sceny
     MyPlane *myPlane = new MyPlane();
