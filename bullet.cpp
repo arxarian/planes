@@ -6,8 +6,9 @@
 #include <QPropertyAnimation>
 
 Bullet::Bullet()
+    : QObject(), QGraphicsPixmapItem()
 {
-    setRect(0, 0, 10, 50);
+    setPixmap(QPixmap(":/images/greenlaser.png"));
 }
 
 int Bullet::type() const
@@ -26,7 +27,7 @@ void Bullet::startMoving()
     pMoveAnimation->setDuration(2500);
 
     pMoveAnimation->setStartValue(scenePos().y());
-    pMoveAnimation->setEndValue(0 - rect().height());
+    pMoveAnimation->setEndValue(0 - boundingRect().height());
 
     pMoveAnimation->start();
 
@@ -65,7 +66,7 @@ void Bullet::detectCollisions()
 
     setY(y() - 10);
 
-    if (y() < - rect().height())
+    if (y() < - boundingRect().height())
     {
         removeBullet();
     }

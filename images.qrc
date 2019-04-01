@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/images">
         <file>spaceship.png</file>
+        <file>greenlaser.png</file>
     </qresource>
 </RCC>
