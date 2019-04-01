@@ -9,8 +9,6 @@ Enemy::Enemy(QObject *parent)
 {
     const qint32 randomPosition = rand() % (static_cast<int>(Game::resolution().width() - rect().width()));
     setPos(randomPosition, 0);
-
-    startMoving();
 }
 
 int Enemy::type() const
@@ -27,7 +25,7 @@ void Enemy::startMoving()
 {
     QPropertyAnimation *pMoveAnimation = new QPropertyAnimation(this, "animatedY");
     pMoveAnimation->setDuration(10000);
-    pMoveAnimation->setStartValue(rect().y());
+    pMoveAnimation->setStartValue(scenePos().y());
     pMoveAnimation->setEndValue(Game::resolution().height() + rect().height());
 
     pMoveAnimation->start();
