@@ -12,7 +12,12 @@ Enemy::Enemy(QObject *parent)
     setScale(qBound(0.3, QRandomGenerator::global()->generateDouble(), 1.0));
 
     const qint32 randomPosition = rand() % (static_cast<int>(Game::resolution().width() - boundingRect().width()));
-    setPos(randomPosition, 0);
+    setPos(randomPosition, -boundingRect().height());
+
+    if (QRandomGenerator::global()->generateDouble() > 0.65 && scale() < 0.45)
+    {
+        m_speed = 3500;
+    }
 }
 
 int Enemy::type() const
@@ -28,7 +33,7 @@ qreal Enemy::animatedY() const
 void Enemy::startMoving()
 {
     QPropertyAnimation *pMoveAnimation = new QPropertyAnimation(this, "animatedY");
-    pMoveAnimation->setDuration(10000);
+    pMoveAnimation->setDuration(m_speed);
     pMoveAnimation->setStartValue(scenePos().y());
     pMoveAnimation->setEndValue(Game::resolution().height() + boundingRect().height());
 

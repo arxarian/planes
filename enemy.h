@@ -26,6 +26,7 @@ public slots:
 
 private:
     qreal m_animatedY;
+    qint32 m_speed = 10000;
 
 signals:
     void animatedYChanged();
