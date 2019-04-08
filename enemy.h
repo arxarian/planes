@@ -21,6 +21,7 @@ public:
     qreal animatedY() const;
 
 public slots:
+    void detectCollisions();
     void startMoving();
     void setAnimatedY(qreal animatedY);
 
@@ -30,6 +31,7 @@ private:
 
 signals:
     void animatedYChanged();
+    void planeHit();
 };
 
 #endif // ENEMY_H

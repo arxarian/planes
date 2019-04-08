@@ -33,12 +33,10 @@ void Bullet::startMoving()
 
     connect(pMoveAnimation, &QPropertyAnimation::valueChanged, this, [this]{
         this->setY(this->animatedY());
-        this->detectCollisions();
     });
 
     connect(pMoveAnimation, &QPropertyAnimation::finished, this, [this]{
-        scene()->removeItem(this);
-        this->deleteLater();
+        this->removeBullet();
     });
 }
 
@@ -47,33 +45,11 @@ void Bullet::setAnimatedY(qreal y)
     m_animatedY = y;
 }
 
-void Bullet::detectCollisions()
-{
-    const QList<QGraphicsItem *> arrCollidingItems = collidingItems();
-
-    for (const auto item : arrCollidingItems)
-    {
-        if (item->type() == Enemy::Type)
-        {
-            scene()->removeItem(item);
-            delete item;
-
-            removeBullet();
-
-            return;
-        }
-    }
-
-    setY(y() - 10);
-
-    if (y() < - boundingRect().height())
-    {
-        removeBullet();
-    }
-}
-
 void Bullet::removeBullet()
 {
-    scene()->removeItem(this);
+    if (scene())
+    {
+        scene()->removeItem(this);
+    }
     this->deleteLater();
 }

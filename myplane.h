@@ -9,7 +9,13 @@ class MyPlane : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    MyPlane();
+    enum
+    {
+        Type = UserType + 3
+    };
+
+    explicit MyPlane(QObject *parent = nullptr);
+    int type() const override;
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;

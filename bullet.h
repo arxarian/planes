@@ -21,7 +21,6 @@ public:
     qreal animatedY() const;
 
 public slots:
-    void detectCollisions();
     void startMoving();
     void setAnimatedY(qreal y);
 

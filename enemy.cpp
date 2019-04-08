@@ -1,8 +1,11 @@
-#include "enemy.h"
 #include <QGraphicsScene>
 #include <QPropertyAnimation>
 #include <QRandomGenerator>
+#include <QDebug>
 
+#include "enemy.h"
+#include "myplane.h"
+#include "bullet.h"
 #include "game.h"
 
 Enemy::Enemy(QObject *parent)
@@ -30,6 +33,36 @@ qreal Enemy::animatedY() const
     return m_animatedY;
 }
 
+void Enemy::detectCollisions()
+{
+    const QList<QGraphicsItem *> arrCollidingItems = collidingItems();
+
+    for (const auto& item : arrCollidingItems)
+    {
+        if (item->type() == Bullet::Type)
+        {
+            if (scene())
+            {
+                scene()->removeItem(item);
+            }
+            delete item;
+
+            if (scene())
+            {
+                scene()->removeItem(this);
+            }
+            this->deleteLater();
+        }
+        else if (item->type() == MyPlane::Type)
+        {
+            scene()->removeItem(this);
+            this->deleteLater();
+
+            emit planeHit();
+        }
+    }
+}
+
 void Enemy::startMoving()
 {
     QPropertyAnimation *pMoveAnimation = new QPropertyAnimation(this, "animatedY");
@@ -41,6 +74,7 @@ void Enemy::startMoving()
 
     connect(pMoveAnimation, &QPropertyAnimation::valueChanged, this, [this]{
         this->setY(this->animatedY());
+        this->detectCollisions();
     });
 
     connect(pMoveAnimation, &QPropertyAnimation::finished, this, [this]{

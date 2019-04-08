@@ -6,10 +6,15 @@
 #include "bullet.h"
 #include "enemy.h"
 
-MyPlane::MyPlane()
-    : QObject(), QGraphicsPixmapItem()
+MyPlane::MyPlane(QObject *parent)
+    : QObject(parent), QGraphicsPixmapItem()
 {
     setPixmap(QPixmap(":/images/spaceship.png"));
+}
+
+int MyPlane::type() const
+{
+    return Type;
 }
 
 void MyPlane::keyPressEvent(QKeyEvent *event)
