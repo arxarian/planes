@@ -13,6 +13,7 @@ Enemy::Enemy(QObject *parent)
 {
     setPixmap(QPixmap(":/images/meteorit.png"));
     setScale(qBound(0.3, QRandomGenerator::global()->generateDouble(), 1.0));
+    setRotation(QRandomGenerator::global()->generateDouble() * 360);
 
     const qint32 randomPosition = rand() % (static_cast<int>(Game::resolution().width() - boundingRect().width()));
     setPos(randomPosition, -boundingRect().height());
