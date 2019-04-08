@@ -32,12 +32,14 @@ SOURCES += \
     bullet.cpp \
     myplane.cpp \
     enemy.cpp \
+    lives.cpp \
     game.cpp
 
 HEADERS += \
     bullet.h \
     myplane.h \
     enemy.h \
+    lives.h \
     game.h
 
 # Default rules for deployment.

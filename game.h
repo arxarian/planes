@@ -4,6 +4,8 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 
+#include "lives.h"
+
 class Game : public QGraphicsView
 {
     Q_OBJECT
@@ -15,4 +17,10 @@ public:
 
 public slots:
     void spawnEnemy();
+
+private:
+    Lives *lives;
+
+private slots:
+    void PlaneHit();
 };

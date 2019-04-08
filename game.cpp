@@ -26,6 +26,9 @@ Game::Game(QWidget *parent) : QGraphicsView(parent)
     // place the plane in the bottom middle
     myPlane->setPos((scene->width() - myPlane->boundingRect().width()) / 2,
                     scene->height() - myPlane->boundingRect().height());
+
+    lives = new Lives();
+    scene->addItem(lives);
 }
 
 void Game::Run()
@@ -48,4 +51,11 @@ void Game::spawnEnemy()
     Enemy *enemy = new Enemy();
     scene()->addItem(enemy);
     enemy->startMoving();
+
+    connect(enemy, &Enemy::planeHit, this, &Game::PlaneHit);
+}
+
+void Game::PlaneHit()
+{
+    lives->Descrease();
 }
