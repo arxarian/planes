@@ -29,6 +29,10 @@ Game::Game(QWidget *parent) : QGraphicsView(parent)
 
     lives = new Lives();
     scene->addItem(lives);
+
+    score = new Score();
+    score->setPos(0, 35);
+    scene->addItem(score);
 }
 
 void Game::Run()
@@ -52,10 +56,6 @@ void Game::spawnEnemy()
     scene()->addItem(enemy);
     enemy->startMoving();
 
-    connect(enemy, &Enemy::planeHit, this, &Game::PlaneHit);
-}
-
-void Game::PlaneHit()
-{
-    lives->Descrease();
+    connect(enemy, &Enemy::planeHit, lives, &Lives::Descrease);
+    connect(enemy, &Enemy::enemyDestroyed, score, &Score::AddPoints);
 }

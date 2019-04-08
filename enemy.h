@@ -32,6 +32,7 @@ private:
 signals:
     void animatedYChanged();
     void planeHit();
+    void enemyDestroyed();
 };
 
 #endif // ENEMY_H

@@ -1,6 +1,5 @@
 #include <QGraphicsScene>
 #include <QPropertyAnimation>
-#include <QRandomGenerator>
 #include <QDebug>
 
 #include "enemy.h"
@@ -12,13 +11,15 @@ Enemy::Enemy(QObject *parent)
     : QObject(parent), QGraphicsPixmapItem()
 {
     setPixmap(QPixmap(":/images/meteorit.png"));
-    setScale(qBound(0.3, QRandomGenerator::global()->generateDouble(), 1.0));
-    setRotation(QRandomGenerator::global()->generateDouble() * 360);
+
+    setScale(qBound(0.3, static_cast<double>(rand() % 10000) / 10000, 1.0));
+
+    setRotation(static_cast<double>(rand() % 10000) / 10000 * 360);
 
     const qint32 randomPosition = rand() % (static_cast<int>(Game::resolution().width() - boundingRect().width()));
     setPos(randomPosition, -boundingRect().height());
 
-    if (QRandomGenerator::global()->generateDouble() > 0.65 && scale() < 0.45)
+    if (static_cast<double>(rand() % 10000) / 10000 > 0.65 && scale() < 0.45)
     {
         m_speed = 3500;
     }
@@ -48,11 +49,20 @@ void Enemy::detectCollisions()
             }
             delete item;
 
-            if (scene())
+            if (scale() < 0.4)
             {
-                scene()->removeItem(this);
+                if (scene())
+                {
+                    scene()->removeItem(this);
+                }
+                this->deleteLater();
+
+                emit enemyDestroyed();
             }
-            this->deleteLater();
+            else
+            {
+                setScale(scale() - 0.2);
+            }
         }
         else if (item->type() == MyPlane::Type)
         {

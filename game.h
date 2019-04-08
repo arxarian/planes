@@ -5,6 +5,7 @@
 #include <QGraphicsView>
 
 #include "lives.h"
+#include "score.h"
 
 class Game : public QGraphicsView
 {
@@ -20,7 +21,5 @@ public slots:
 
 private:
     Lives *lives;
-
-private slots:
-    void PlaneHit();
+    Score *score;
 };

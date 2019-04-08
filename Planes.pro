@@ -33,14 +33,16 @@ SOURCES += \
     myplane.cpp \
     enemy.cpp \
     lives.cpp \
-    game.cpp
+    game.cpp \
+    score.cpp
 
 HEADERS += \
     bullet.h \
     myplane.h \
     enemy.h \
     lives.h \
-    game.h
+    game.h \
+    score.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
