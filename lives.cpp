@@ -4,7 +4,7 @@
 Lives::Lives(QGraphicsItem *parent)
     : QGraphicsTextItem(parent)
 {
-    setPlainText(QString("Lives: %1").arg(lives)); // Lives: 3
+    setPlainText(QString("Lives: %1").arg(m_lives)); // Lives: 3
     setDefaultTextColor(Qt::red);
 
     setScale(2);
@@ -13,11 +13,11 @@ Lives::Lives(QGraphicsItem *parent)
 
 void Lives::Descrease()
 {
-    lives--;
-    setPlainText(QString("Lives: %1").arg(lives)); // Lives: 2
+    m_lives--;
+    setPlainText(QString("Lives: %1").arg(m_lives)); // Lives: 2
 }
 
 int Lives::GetLifes()
 {
-    return lives;
+    return m_lives;
 }
