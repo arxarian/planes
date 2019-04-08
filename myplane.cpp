@@ -35,15 +35,12 @@ void MyPlane::keyPressEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Space)
     {
-        Bullet *bullet1 = new Bullet();
-        bullet1->setPos(x() + 35, y());
-        scene()->addItem(bullet1);
-        bullet1->startMoving();
+        Bullet *bullet = new Bullet();
+        bullet->setPos(x() + boundingRect().width() / 2 - 2, y());
+        scene()->addItem(bullet);
+        bullet->startMoving();
 
-        Bullet *bullet2 = new Bullet();
-        bullet2->setPos(x() + 61, y());
-        scene()->addItem(bullet2);
-        bullet2->startMoving();
+        // TODO - muzes pridat vice strel
     }
 
     QGraphicsPixmapItem::keyPressEvent(event);

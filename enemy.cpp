@@ -12,16 +12,11 @@ Enemy::Enemy(QObject *parent)
     : QObject(parent), QGraphicsPixmapItem()
 {
     setPixmap(QPixmap(":/images/meteorit.png"));
-    setScale(qBound(0.3, QRandomGenerator::global()->generateDouble(), 1.0));
-    setRotation(QRandomGenerator::global()->generateDouble() * 360);
 
     const qint32 randomPosition = rand() % (static_cast<int>(Game::resolution().width() - boundingRect().width()));
     setPos(randomPosition, -boundingRect().height());
 
-    if (QRandomGenerator::global()->generateDouble() > 0.65 && scale() < 0.45)
-    {
-        m_speed = 3500;
-    }
+    // TODO - nastav ruzne velke asteroidy (metoda setScale), ruzne rychle (promenna m_speed), ruzne rotovane (metoda setRotation)
 }
 
 int Enemy::type() const
