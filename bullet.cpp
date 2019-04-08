@@ -9,6 +9,7 @@ Bullet::Bullet()
     : QObject(), QGraphicsPixmapItem()
 {
     setPixmap(QPixmap(":/images/greenlaser.png"));
+    setZValue(-1);
 }
 
 int Bullet::type() const
