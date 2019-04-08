@@ -17,16 +17,6 @@ int MyPlane::type() const
     return Type;
 }
 
-int MyPlane::GetLives() const
-{
-    return lives;
-}
-
-void MyPlane::SetLives(int lives)
-{
-    this->lives = lives;
-}
-
 void MyPlane::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Left)

@@ -17,14 +17,8 @@ public:
     explicit MyPlane(QObject *parent = nullptr);
     int type() const override;
 
-    int GetLives() const;
-    void SetLives(int lives);
-
 protected:
     void keyPressEvent(QKeyEvent *event) override;
-
-private:
-    int lives = 3;
 };
 
 #endif // MYRECT_H
